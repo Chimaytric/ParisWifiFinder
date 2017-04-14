@@ -1,0 +1,75 @@
+<section layout="row" flex="" style="width: 100%; height: 100%;">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="6">
+        <header class="nav-header">
+            <img src="assets/images/wifi.png" alt="">
+            <h1 class="docs-logotype md-heading ng-isolate-scope"><h1>Paris public wifi</h1>
+        </header>
+        <md-content role="navigation">
+            <md-list flex="" ng-repeat="(district, records) in rootCtrl.records" style="padding: 0;">
+                <md-subheader class="md-sticky">{{district + 1}}e arrondissement</md-subheader>
+                <md-list-item ng-click="rootCtrl.placeMarker(record)" class="md-2-line" ng-repeat="record in records">
+                    <i class="material-icons md-avatar">network_wifi</i>
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{record.name}}</h3>
+                        <p>{{record.address}}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </md-sidenav>
+    <section layout="column" flex="">
+        <md-toolbar ng-show="!showSearch">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" hide-gt-sm ng-click="rootCtrl.openSidenav()">
+                    <md-icon icon="menu"><i class="material-icons">menu</i></md-icon>
+                </md-button>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+                    <md-icon icon="search"><i class="material-icons">search</i></md-icon>
+                </md-button>
+                <md-menu>
+                    <md-button class="md-icon-button" aria-label="Open Settings" ng-click="rootCtrl.showMenu($mdMenu, $event)">
+                        <md-icon><i class="material-icons">more_vert</i></md-icon>
+                    </md-button>
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <md-switch aria-label="Switch 1">Option 1</md-switch>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-switch aria-label="Switch 1">Option 2</md-switch>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-switch aria-label="Switch 1">Option 3</md-switch>
+                        </md-menu-item>
+                        <md-menu-item>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </md-toolbar>
+        <md-toolbar class="md-hue-1" ng-show="showSearch">
+            <div class="md-toolbar-tools">
+                <md-button class="md-icon-button" ng-click="showSearch = !showSearch" aria-label="Back">
+                    <md-icon><i class="material-icons">arrow_back</i></md-icon>
+                </md-button>
+                <md-input-container flex md-no-float="true">
+                    <input type="text" placeholder="Search" ng-model="search.who" style="margin-top: 20px; border-color: rgba(255, 255, 255, 0.7); color: white;">
+                </md-input-container>
+                <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+                    <md-icon><i class="material-icons">search</i></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Open Settings">
+                    <md-icon><i class="material-icons">more_vert</i></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <div id="map" style="width: 100%; height: 100%;">
+        </div>
+        <md-button class="md-fab md-fab-bottom-right" aria-label="add" ng-click="rootCtrl.getAroundMe()">
+            <md-tooltip md-direction="top">Find hotspots around me</md-tooltip>
+            <md-icon>
+                <i class="material-icons">near_me</i>
+            </md-icon>
+        </md-button>
+    </section>
+</section>

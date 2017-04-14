@@ -1,0 +1,24 @@
+{
+  "name": "dd",
+  "version": "0.1",
+  "dependencies": {
+    "angular": "1.5",
+    "angular-ui-router": "1.0.0-beta.2",
+    "angular-material": "1.1.3"
+
+  },
+  "main": "index.html",
+  "authors": [
+    "Charles Millequant"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

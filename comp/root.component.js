@@ -63,7 +63,8 @@ function RootController(rootFactory, $mdDialog, $mdSidenav){
                     var userLocationSpot = new google.maps.Marker({
                         position: position,
                         map: vm.map,
-                        icon: 'assets/images/userLocation.png'
+                        icon: 'assets/images/userLocation.png',
+                        title: 'You are here !'
                     });
                     vm.markers.push(userLocationSpot);
                     vm.records.forEach(function(district){
@@ -74,7 +75,13 @@ function RootController(rootFactory, $mdDialog, $mdSidenav){
                                     title: spot.name,
                                     map: vm.map,
                                     animation: google.maps.Animation.DROP,
-                                    icon: 'assets/images/wifiSpot.png'
+                                    icon: 'assets/images/wifiSpot.png',
+                                    infoWindow: new google.maps.InfoWindow({
+                                        content: "<b>"+spot.name+"</b><br><em>"+spot.address+"</em>"
+                                    })
+                                });
+                                marker.addListener('click', function() {
+                                    marker.infoWindow.open(vm.map, marker);
                                 });
                                 vm.markers.push(marker);
                             }
